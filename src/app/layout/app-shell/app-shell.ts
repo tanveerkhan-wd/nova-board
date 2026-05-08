@@ -1,0 +1,34 @@
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterOutlet, Router } from '@angular/router';
+import { AuthService } from '../../core/services/auth-service';
+import { Sidenav } from '../sidenav/sidenav';
+
+@Component({
+  selector: 'app-app-shell',
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    RouterOutlet,
+    Sidenav,
+  ],
+  templateUrl: './app-shell.html',
+  styleUrl: './app-shell.scss',
+})
+export class AppShell {
+  authService = inject(AuthService);
+  router = inject(Router);
+
+  async logout() {
+    await this.authService.signOut();
+    this.router.navigate(['/login']);
+  }
+}

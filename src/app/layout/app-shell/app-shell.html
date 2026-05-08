@@ -1,0 +1,24 @@
+<!-- src/app/layout/app-shell/app-shell.component.html -->
+<mat-drawer-container class="shell-container" autosize>
+  <mat-drawer #drawer mode="side" opened>
+    <app-sidenav></app-sidenav>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="drawer.toggle()" *ngIf="!drawer.opened">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <span>NovaBoard</span>
+
+      <span class="spacer"></span>
+
+      <button mat-button (click)="logout()">Logout</button>
+    </mat-toolbar>
+
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+  </mat-drawer-content>
+</mat-drawer-container>

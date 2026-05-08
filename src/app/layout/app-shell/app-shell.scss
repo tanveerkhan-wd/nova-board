@@ -1,0 +1,16 @@
+/* src/app/layout/app-shell/app-shell.component.scss */
+.shell-container {
+  height: 100vh;
+}
+
+mat-drawer {
+  width: 260px;
+}
+
+.content {
+  padding: 2rem;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
