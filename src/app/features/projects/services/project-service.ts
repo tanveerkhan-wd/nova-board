@@ -1,15 +1,15 @@
 import { Injectable, signal } from '@angular/core';
-import { SupabaseClient } from '@supabase/supabase-js';
 import { inject } from '@angular/core';
-import { toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { Observable, from, switchMap, map, catchError } from 'rxjs';
-import { Project } from '../interfaces/projectInterface';
+import { toObservable } from '@angular/core/rxjs-interop';
+import { Observable, from, map, catchError } from 'rxjs';
+import { Project } from '../../../shared/interfaces/database.interface';
+import { SupabaseService } from '../../../core/services/supabase-service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProjectService {
-  private supabase = inject(SupabaseClient) as SupabaseClient; // From provider
+  private supabase = inject(SupabaseService).client;
   public projects = signal<Project[]>([]); // Reactive cache
   projects$ = toObservable(this.projects); // For components
 

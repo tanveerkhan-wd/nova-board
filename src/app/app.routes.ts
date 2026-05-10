@@ -1,12 +1,11 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './features/component/auth/login-component/login-component';
-import { DashboardComponent } from './features/component/dashboard/dashboard-component/dashboard-component';
+import { LoginComponent } from './features/auth/components/login-component/login-component';
+import { RegisterComponent } from './features/auth/components/register-component/register-component';
 import { authGuard } from './core/guards/auth-guard';
-import { RegisterComponent } from './features/component/auth/register-component/register-component';
 import { AppShell } from './layout/app-shell/app-shell';
 
 export const routes: Routes = [
-    { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
 
   {
@@ -14,12 +13,11 @@ export const routes: Routes = [
     component: AppShell,
     canActivateChild: [authGuard],
     children: [
-      { path: 'dashboard', component: DashboardComponent },
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'projects', loadComponent: () => import('./features/component/project-component/project-component').then(m => m.ProjectComponent) },
-      // Later: { path: 'projects', loadChildren: ... }
+      { path: 'projects', loadComponent: () => import('./features/projects/components/project-component/project-component').then(m => m.ProjectComponent) },
+      { path: 'projects/:id', loadComponent: () => import('./features/board/components/kanban-board/kanban-board').then(m => m.KanbanBoardComponent) },
+      { path: '', redirectTo: 'projects', pathMatch: 'full' },
     ]
   },
 
-  { path: '**', redirectTo: 'dashboard' },
+  { path: '**', redirectTo: 'projects' },
 ];

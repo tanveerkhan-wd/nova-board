@@ -1,19 +1,49 @@
-<!-- src/app/layout/sidenav/sidenav.component.html -->
-<mat-nav-list>
-  <a mat-list-item routerLink="/dashboard" routerLinkActive="active">
-    <mat-icon>dashboard</mat-icon>
-    Dashboard
-  </a>
-  <a mat-list-item routerLink="/projects" routerLinkActive="active">
-    <mat-icon>folder</mat-icon>
-    Projects
-  </a>
-  <a mat-list-item routerLink="/teams" routerLinkActive="active">
-    <mat-icon>group</mat-icon>
-    Teams
-  </a>
-  <a mat-list-item routerLink="/settings" routerLinkActive="active">
-    <mat-icon>settings</mat-icon>
-    Settings
-  </a>
-</mat-nav-list>
+<div class="flex flex-col h-full p-4">
+  <div class="flex items-center px-4 mb-8">
+    <div class="h-8 w-8 bg-blue-600 rounded flex items-center justify-center mr-3 shadow-sm">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+      </svg>
+    </div>
+    <span class="text-xl font-black tracking-tight text-blue-600 dark:text-blue-400">NOVA<span class="text-gray-900 dark:text-white">BOARD</span></span>
+  </div>
+
+  <nav class="flex-1 space-y-1">
+    <a routerLink="/projects" routerLinkActive="bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400" class="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg transition-colors text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+      </svg>
+      Projects
+    </a>
+    
+    <a routerLink="/teams" routerLinkActive="bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400" class="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg transition-colors text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+      </svg>
+      Teams
+    </a>
+
+    <a routerLink="/settings" routerLinkActive="bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400" class="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg transition-colors text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+      </svg>
+      Settings
+    </a>
+  </nav>
+
+  <div class="mt-auto pt-6 border-t border-gray-100 dark:border-gray-800">
+    <div class="px-4 mb-4">
+      <h4 class="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-4">Recent Projects</h4>
+      <div class="space-y-3">
+        <div class="flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer transition-colors">
+          <div class="h-2 w-2 rounded-full bg-blue-500 mr-3"></div>
+          Nova Board Rebuild
+        </div>
+        <div class="flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer transition-colors">
+          <div class="h-2 w-2 rounded-full bg-green-500 mr-3"></div>
+          Supabase Integration
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

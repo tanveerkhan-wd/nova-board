@@ -1,9 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import { RouterOutlet, Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth-service';
 import { Sidenav } from '../sidenav/sidenav';
@@ -13,10 +9,6 @@ import { Sidenav } from '../sidenav/sidenav';
   standalone: true,
   imports: [
     CommonModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
     RouterOutlet,
     Sidenav,
   ],
