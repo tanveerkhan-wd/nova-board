@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DragDropModule, CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { TaskService } from '../../../tasks/services/task-service';
+import { ProjectService } from '../../../projects/services/project-service';
 import { Task, TaskStatus } from '../../../../shared/interfaces/database.interface';
 import { BoardColumnComponent } from '../board-column/board-column';
 import { TaskDetailComponent } from '../../../tasks/components/task-detail/task-detail';
@@ -18,13 +19,16 @@ import { ButtonComponent } from '../../../../shared/components/button/button';
     <div class="h-full flex flex-col p-6">
       <header class="mb-6 flex items-center justify-between">
         <div>
-          <h1 class="text-2xl font-bold text-text-dark dark:text-gray-100">Project Board</h1>
-          <p class="text-sm text-text-dark/70 dark:text-gray-400">Manage and track your project tasks.</p>
+          <h1 class="text-2xl font-bold text-text-dark dark:text-gray-100">
+            {{ currentProject()?.name || 'Project Board' }}
+          </h1>
+          <p class="text-sm text-text-dark/70 dark:text-gray-400">Manage and track {{ currentProject()?.name || 'project' }} tasks.</p>
         </div>
         <app-button (btnClick)="createTask()" icon="add">
           Create Task
         </app-button>
       </header>
+
 
       <!-- Board Columns -->
       <div 
@@ -48,11 +52,16 @@ import { ButtonComponent } from '../../../../shared/components/button/button';
 export class KanbanBoardComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private taskService = inject(TaskService);
+  private projectService = inject(ProjectService);
   private dialog = inject(MatDialog);
   private authService = inject(AuthService);
 
   projectId = signal<string | null>(null);
   allTasks = this.taskService.tasks;
+
+  currentProject = computed(() => 
+    this.projectService.projects().find(p => p.id === this.projectId())
+  );
 
   columns: { title: string; status: TaskStatus }[] = [
     { title: 'Backlog', status: 'Backlog' },

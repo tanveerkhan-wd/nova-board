@@ -9,6 +9,7 @@ import { Task, TaskStatus, TaskPriority } from '../../../../shared/interfaces/da
 import { TaskService } from '../../services/task-service';
 import { CommentService } from '../../services/comment-service';
 import { MemberService } from '../../../projects/services/member-service';
+import { ProjectService } from '../../../projects/services/project-service';
 import { AuthService } from '../../../../core/services/auth-service';
 import { ButtonComponent } from '../../../../shared/components/button/button';
 
@@ -21,7 +22,7 @@ import { ButtonComponent } from '../../../../shared/components/button/button';
       <!-- Header -->
       <header class="px-6 py-4 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between bg-gray-50/50 dark:bg-gray-800/50">
         <div class="flex items-center space-x-2 text-[11px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest">
-          <span class="hover:underline cursor-pointer">Project</span>
+          <span class="hover:underline cursor-pointer truncate max-w-[150px] inline-block">{{ projectName() || 'Project' }}</span>
           <span>/</span>
           <span class="text-blue-600 dark:text-blue-400">TASK-{{ task.id.slice(0, 4) }}</span>
         </div>
@@ -195,7 +196,12 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
   private taskService = inject(TaskService);
   private commentService = inject(CommentService);
   private memberService = inject(MemberService);
+  private projectService = inject(ProjectService);
   private authService = inject(AuthService);
+
+  projectName = computed(() => 
+    this.projectService.projects().find(p => p.id === this.task.project_id)?.name
+  );
 
   editor: Editor;
   commentEditor: Editor;
