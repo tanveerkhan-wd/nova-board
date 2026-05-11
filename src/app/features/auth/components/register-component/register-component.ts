@@ -21,7 +21,7 @@ import { AuthService } from '../../../../core/services/auth-service';
     RouterLink,
   ],
   templateUrl: './register-component.html',
-  styleUrl: './register-component.scss',
+  styleUrls: ['./register-component.scss'],
 })
 export class RegisterComponent {
   private authService = inject(AuthService);

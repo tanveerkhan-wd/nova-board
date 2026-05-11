@@ -7,10 +7,13 @@
 /* Theme variables */
 :root {
   --jira-blue: #0052CC;
+  --jira-blue-weak: #2684FF;
   --neutral-100: #FFFFFF;
   --neutral-200: #F4F5F7;
   --neutral-300: #F8F9FA;
   --text-dark: #172B4D;
+  --text-muted: #5E6C84;
+  --divider: #DFE1E6;
 }
 
 // Global fallback for SVGs
@@ -31,6 +34,8 @@ body {
   color: var(--text-dark);
   background-color: var(--neutral-200);
   font-family: Roboto, ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 
 /* Add global utility classes here if needed, or migrate components to Angular Material/Bootstrap */
@@ -132,3 +137,17 @@ body {
 
 /* Simple utility for small badges */
 .rounded-pill{border-radius:9999px;padding:0.25rem 0.5rem;font-size:0.75rem}
+
+/* Angular Material overrides for a Jira-like look */
+.mat-mdc-form-field .mdc-floating-label{
+  color:var(--text-muted);
+}
+.mat-mdc-text-field .mdc-notched-outline { border-color: var(--divider); }
+.mat-mdc-button.mat-primary{ background-color:var(--jira-blue); color:#fff; }
+.mat-mdc-button.mat-primary:hover{ background-color:var(--jira-blue-weak); }
+.mat-mdc-button.mat-primary:focus{ box-shadow:0 0 0 4px rgba(0,82,204,0.12); }
+
+/* Auth specific tiny background polish */
+.auth-page-background{
+  background-image: radial-gradient(circle at 10% 20%, rgba(0,82,204,0.03) 0 20%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(37,56,88,0.02) 0 18%, transparent 40%);
+}

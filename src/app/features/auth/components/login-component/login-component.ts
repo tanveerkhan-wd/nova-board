@@ -5,6 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../../core/services/auth-service';
 
@@ -18,10 +19,11 @@ import { AuthService } from '../../../../core/services/auth-service';
     MatInputModule,
     MatButtonModule,
     MatProgressSpinnerModule,
+    MatCheckboxModule,
     RouterLink,
   ],
   templateUrl: './login-component.html',
-  styleUrl: './login-component.scss',
+  styleUrls: ['./login-component.scss'],
 })
 export class LoginComponent {
   private authService = inject(AuthService);
@@ -29,6 +31,7 @@ export class LoginComponent {
 
   email = signal('');
   password = signal('');
+  remember = signal(false);
   error = signal<string | null>(null);
   loading = signal(false);
 

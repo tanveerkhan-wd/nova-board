@@ -1,46 +1,70 @@
 <!-- src/app/features/auth/login/login.component.html -->
-<div class="login-container">
-  <mat-card class="login-card">
-    <mat-card-header>
-      <mat-card-title>Welcome to NovaBoard</mat-card-title>
-      <mat-card-subtitle>Sign in to continue</mat-card-subtitle>
-    </mat-card-header>
+<div class="auth-container">
+  <mat-card class="auth-card" role="region" aria-label="Log in to NovaBoard">
+    <div class="card-top">
+      <img src="/logo.png" alt="NovaBoard" class="logo" />
+      <h1 class="title">Log in to NovaBoard</h1>
+      <p class="subtitle">Welcome back — please enter your details.</p>
+    </div>
 
     <mat-card-content>
-      <form (ngSubmit)="login()">
-        <mat-form-field appearance="outline">
-          <mat-label>Email</mat-label>
-          <input matInput [(ngModel)]="email" name="email" type="email" required />
+      <form (ngSubmit)="login()" #loginForm="ngForm" novalidate>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email or username</mat-label>
+          <input
+            matInput
+            [(ngModel)]="email"
+            name="email"
+            required
+            type="email"
+            autocomplete="username"
+            aria-label="Email or username"
+          />
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" class="full-width">
           <mat-label>Password</mat-label>
-          <input matInput [(ngModel)]="password" name="password" type="password" required />
+          <input
+            matInput
+            [(ngModel)]="password"
+            name="password"
+            required
+            type="password"
+            autocomplete="current-password"
+            aria-label="Password"
+          />
         </mat-form-field>
 
-        @if (error()) {
-          <div class="error-message">{{ error() }}</div>
-        }
+        <div class="row between help-row">
+          <mat-checkbox [(ngModel)]="remember" name="remember">Remember me</mat-checkbox>
+          <a class="forgot-link" routerLink="/forgot-password">Forgot password?</a>
+        </div>
 
         <button
           mat-raised-button
           color="primary"
+          class="primary-btn"
           type="submit"
-          [disabled]="loading()"
-          class="login-btn"
+          [disabled]="loading() || !loginForm.form.valid"
+          aria-busy="{{ loading() }}"
         >
-          @if (loading()) {
-            <mat-spinner diameter="20"></mat-spinner>
-          } @else {
-            Sign In
-          }
+          <mat-progress-spinner
+            *ngIf="loading()"
+            mode="indeterminate"
+            diameter="18"
+            strokeWidth="2"
+            class="btn-spinner"
+          ></mat-progress-spinner>
+          <span *ngIf="!loading()">Log in</span>
         </button>
+
+        <div *ngIf="error()" class="error-message" role="alert">{{ error() }}</div>
       </form>
     </mat-card-content>
 
-    <mat-card-actions>
-      <button mat-button color="accent">Forgot password?</button>
-      <button mat-button routerLink="/register">Don't have an account? Sign up</button>
+    <mat-card-actions class="card-actions">
+      <span>Don’t have an account?</span>
+      <a routerLink="/register" class="link">Sign up</a>
     </mat-card-actions>
   </mat-card>
 </div>
