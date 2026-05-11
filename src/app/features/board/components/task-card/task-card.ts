@@ -9,10 +9,10 @@ import { Task } from '../../../../shared/interfaces/database.interface';
   template: `
     <div 
       (click)="open.emit(task)"
-      class="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 cursor-pointer hover:shadow-md hover:border-blue-200 dark:hover:border-blue-900 transition-all group"
+      class="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm border border-neutral-300 dark:border-gray-800 cursor-pointer hover:shadow-md hover:border-jira-blue/30 dark:hover:border-blue-900 transition-all group"
     >
       <div class="flex items-start justify-between mb-3">
-        <h4 class="text-sm font-bold text-gray-900 dark:text-gray-100 leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+        <h4 class="text-sm font-bold text-text-dark dark:text-gray-100 leading-tight group-hover:text-jira-blue dark:group-hover:text-blue-400 transition-colors">
           {{ task.title }}
         </h4>
       </div>
@@ -30,7 +30,7 @@ import { Task } from '../../../../shared/interfaces/database.interface';
         </div>
         
         <div class="flex -space-x-2">
-          <div class="h-6 w-6 rounded-full bg-blue-100 dark:bg-blue-900/30 border-2 border-white dark:border-gray-800 flex items-center justify-center text-[8px] text-blue-600 dark:text-blue-400 font-black shadow-sm">
+          <div class="h-6 w-6 rounded-full bg-jira-blue/10 dark:bg-blue-900/30 border-2 border-white dark:border-gray-800 flex items-center justify-center text-[8px] text-jira-blue dark:text-blue-400 font-black shadow-sm">
             {{ task.assignee_id ? 'AS' : '?' }}
           </div>
         </div>
@@ -47,7 +47,7 @@ export class TaskCardComponent {
     switch (this.task.priority) {
       case 'Urgent': return 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400';
       case 'High': return 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400';
-      case 'Medium': return 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400';
+      case 'Medium': return 'bg-jira-blue/10 text-jira-blue dark:bg-blue-900/30 dark:text-blue-400';
       default: return 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-400';
     }
   }

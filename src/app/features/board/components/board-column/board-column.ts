@@ -9,13 +9,13 @@ import { TaskCardComponent } from '../task-card/task-card';
   standalone: true,
   imports: [CommonModule, DragDropModule, TaskCardComponent],
   template: `
-    <div class="flex flex-col h-full bg-gray-50 dark:bg-gray-900/50 rounded-lg border border-gray-200 dark:border-gray-800 w-72">
+    <div class="flex flex-col h-full bg-neutral-100 dark:bg-gray-900/50 rounded-lg border border-neutral-300 dark:border-gray-800 w-72">
       <!-- Column Header -->
       <div class="p-3 flex items-center justify-between border-b border-gray-200 dark:border-gray-800">
-        <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+        <h3 class="text-sm font-semibold text-text-dark dark:text-gray-300 uppercase tracking-wider">
           {{ title }}
         </h3>
-        <span class="bg-gray-200 dark:bg-gray-800 text-gray-600 dark:text-gray-400 text-xs font-bold px-2 py-0.5 rounded-full">
+        <span class="bg-neutral-300 dark:bg-gray-800 text-text-dark/70 dark:text-gray-400 text-xs font-bold px-2 py-0.5 rounded-full">
           {{ tasks.length }}
         </span>
       </div>

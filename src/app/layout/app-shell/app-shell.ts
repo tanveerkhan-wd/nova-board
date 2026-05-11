@@ -13,7 +13,7 @@ import { Sidenav } from '../sidenav/sidenav';
     Sidenav,
   ],
   templateUrl: './app-shell.html',
-  styleUrl: './app-shell.scss',
+  styleUrls: ['./app-shell.scss'],
 })
 export class AppShell {
   authService = inject(AuthService);

@@ -17,10 +17,10 @@ import { AuthService } from '../../../../core/services/auth-service';
     <div class="h-full flex flex-col p-6">
       <header class="mb-6 flex items-center justify-between">
         <div>
-          <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Project Board</h1>
-          <p class="text-sm text-gray-500 dark:text-gray-400">Manage and track your project tasks.</p>
+          <h1 class="text-2xl font-bold text-text-dark dark:text-gray-100">Project Board</h1>
+          <p class="text-sm text-text-dark/70 dark:text-gray-400">Manage and track your project tasks.</p>
         </div>
-        <button (click)="createTask()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors shadow-sm">
+        <button (click)="createTask()" class="bg-jira-blue hover:bg-jira-blue/90 text-white px-4 py-2 rounded-lg font-medium transition-colors shadow-sm">
           Create Task
         </button>
       </header>
