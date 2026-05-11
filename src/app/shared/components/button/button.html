@@ -1,0 +1,15 @@
+<button
+  [type]="type"
+  [disabled]="disabled || loading"
+  [class]="'btn btn-' + variant + ' btn-' + size + ' ' + className"
+  (click)="onClick($event)"
+>
+  <div class="btn-content" [class.loading]="loading">
+    <mat-icon *ngIf="icon" class="btn-icon-inner">{{ icon }}</mat-icon>
+    <ng-content></ng-content>
+  </div>
+
+  <div *ngIf="loading" class="btn-loader">
+    <mat-spinner diameter="20"></mat-spinner>
+  </div>
+</button>

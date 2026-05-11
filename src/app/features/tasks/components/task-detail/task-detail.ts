@@ -10,11 +10,12 @@ import { TaskService } from '../../services/task-service';
 import { CommentService } from '../../services/comment-service';
 import { MemberService } from '../../../projects/services/member-service';
 import { AuthService } from '../../../../core/services/auth-service';
+import { ButtonComponent } from '../../../../shared/components/button/button';
 
 @Component({
   selector: 'app-task-detail',
   standalone: true,
-  imports: [CommonModule, MatDialogModule, FormsModule, TiptapEditorDirective],
+  imports: [CommonModule, MatDialogModule, FormsModule, TiptapEditorDirective, ButtonComponent],
   template: `
     <div class="flex flex-col h-[90vh] max-h-[800px] w-[90vw] max-w-[900px] bg-white dark:bg-gray-900 overflow-hidden rounded-xl shadow-2xl">
       <!-- Header -->
@@ -25,16 +26,8 @@ import { AuthService } from '../../../../core/services/auth-service';
           <span class="text-blue-600 dark:text-blue-400">TASK-{{ task.id.slice(0, 4) }}</span>
         </div>
         <div class="flex items-center space-x-2">
-           <button class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-gray-500 transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-            </svg>
-          </button>
-          <button (click)="close()" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-gray-500 transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
+           <app-button variant="icon" icon="share" size="sm"></app-button>
+           <app-button variant="icon" icon="close" size="sm" (btnClick)="close()"></app-button>
         </div>
       </header>
 
@@ -84,8 +77,8 @@ import { AuthService } from '../../../../core/services/auth-service';
                     </div>
                     <div class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed bg-gray-50 dark:bg-gray-800/50 p-4 rounded-2xl" [innerHTML]="comment.content"></div>
                     <div class="flex items-center space-x-3 mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <button class="text-[10px] font-bold text-gray-500 hover:text-blue-600 uppercase tracking-widest">Edit</button>
-                      <button class="text-[10px] font-bold text-gray-500 hover:text-red-600 uppercase tracking-widest">Delete</button>
+                      <app-button variant="ghost" size="sm" className="!p-0 text-[10px] font-bold uppercase tracking-widest !w-auto">Edit</app-button>
+                      <app-button variant="ghost" size="sm" className="!p-0 text-[10px] font-bold uppercase tracking-widest !w-auto text-red-600">Delete</app-button>
                     </div>
                   </div>
                 </div>
@@ -100,13 +93,14 @@ import { AuthService } from '../../../../core/services/auth-service';
                    <tiptap-editor [editor]="commentEditor" [(ngModel)]="newComment"></tiptap-editor>
                 </div>
                 <div class="flex justify-end">
-                  <button 
-                    (click)="addComment()"
+                  <app-button 
+                    (btnClick)="addComment()"
                     [disabled]="!newComment"
-                    class="bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white px-6 py-2 rounded-lg text-sm font-bold transition-all transform active:scale-95 shadow-md shadow-blue-500/20"
+                    size="md"
+                    icon="send"
                   >
                     Send Message
-                  </button>
+                  </app-button>
                 </div>
               </div>
             </div>

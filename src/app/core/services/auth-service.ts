@@ -21,12 +21,14 @@ export class AuthService {
       this.user.set(currentUser);
       this.userSubject.next(currentUser);
     });
+  }
 
+  async initialize() {
     // Initial check
-    this.supabase.auth.getSession().then(({ data }) => {
-      this.user.set(data.session?.user ?? null);
-      this.userSubject.next(data.session?.user ?? null);
-    });
+    const { data } = await this.supabase.auth.getSession();
+    const currentUser = data.session?.user ?? null;
+    this.user.set(currentUser);
+    this.userSubject.next(currentUser);
   }
 
   async signIn(email: string, password: string) {

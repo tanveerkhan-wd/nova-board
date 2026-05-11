@@ -8,6 +8,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../../core/services/auth-service';
+import { ButtonComponent } from '../../../../shared/components/button/button';
 
 @Component({
   selector: 'app-login-component',
@@ -21,6 +22,7 @@ import { AuthService } from '../../../../core/services/auth-service';
     MatProgressSpinnerModule,
     MatCheckboxModule,
     RouterLink,
+    ButtonComponent,
   ],
   templateUrl: './login-component.html',
   styleUrls: ['./login-component.scss'],
@@ -43,7 +45,7 @@ export class LoginComponent {
 
     try {
       await this.authService.signIn(this.email(), this.password());
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/projects']);
     } catch (err: any) {
       this.error.set(err.message || 'Login failed. Please check your credentials.');
     } finally {

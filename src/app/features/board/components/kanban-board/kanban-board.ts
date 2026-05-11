@@ -8,11 +8,12 @@ import { Task, TaskStatus } from '../../../../shared/interfaces/database.interfa
 import { BoardColumnComponent } from '../board-column/board-column';
 import { TaskDetailComponent } from '../../../tasks/components/task-detail/task-detail';
 import { AuthService } from '../../../../core/services/auth-service';
+import { ButtonComponent } from '../../../../shared/components/button/button';
 
 @Component({
   selector: 'app-kanban-board',
   standalone: true,
-  imports: [CommonModule, DragDropModule, BoardColumnComponent, MatDialogModule],
+  imports: [CommonModule, DragDropModule, BoardColumnComponent, MatDialogModule, ButtonComponent],
   template: `
     <div class="h-full flex flex-col p-6">
       <header class="mb-6 flex items-center justify-between">
@@ -20,9 +21,9 @@ import { AuthService } from '../../../../core/services/auth-service';
           <h1 class="text-2xl font-bold text-text-dark dark:text-gray-100">Project Board</h1>
           <p class="text-sm text-text-dark/70 dark:text-gray-400">Manage and track your project tasks.</p>
         </div>
-        <button (click)="createTask()" class="bg-jira-blue hover:bg-jira-blue/90 text-white px-4 py-2 rounded-lg font-medium transition-colors shadow-sm">
+        <app-button (btnClick)="createTask()" icon="add">
           Create Task
-        </button>
+        </app-button>
       </header>
 
       <!-- Board Columns -->

@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../../core/services/auth-service';
+import { ButtonComponent } from '../../../../shared/components/button/button';
 
 @Component({
   selector: 'app-register-component',
@@ -19,6 +20,7 @@ import { AuthService } from '../../../../core/services/auth-service';
     MatButtonModule,
     MatProgressSpinnerModule,
     RouterLink,
+    ButtonComponent,
   ],
   templateUrl: './register-component.html',
   styleUrls: ['./register-component.scss'],

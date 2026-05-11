@@ -1,12 +1,12 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './features/auth/components/login-component/login-component';
 import { RegisterComponent } from './features/auth/components/register-component/register-component';
-import { authGuard } from './core/guards/auth-guard';
+import { authGuard, guestGuard } from './core/guards/auth-guard';
 import { AppShell } from './layout/app-shell/app-shell';
 
 export const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent, canActivate: [guestGuard] },
+  { path: 'register', component: RegisterComponent, canActivate: [guestGuard] },
 
   {
     path: '',

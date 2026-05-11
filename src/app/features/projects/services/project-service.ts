@@ -4,12 +4,14 @@ import { toObservable } from '@angular/core/rxjs-interop';
 import { Observable, from, map, catchError } from 'rxjs';
 import { Project } from '../../../shared/interfaces/database.interface';
 import { SupabaseService } from '../../../core/services/supabase-service';
+import { AuthService } from '../../../core/services/auth-service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProjectService {
   private supabase = inject(SupabaseService).client;
+  private authService = inject(AuthService);
   public projects = signal<Project[]>([]); // Reactive cache
   projects$ = toObservable(this.projects); // For components
 
@@ -42,7 +44,13 @@ export class ProjectService {
 
   // CREATE: Add new project
   createProject(project: Omit<Project, 'id' | 'created_at'>): Observable<Project> {
-    return from(this.supabase.from('projects').insert(project).select().single()).pipe(
+    const user = this.authService.user();
+    const payload = { 
+      ...project,
+      owner_id: project.owner_id || user?.id || ''
+    };
+
+    return from(this.supabase.from('projects').insert(payload).select().single()).pipe(
       map(({ data, error }) => {
         if (error) throw error;
         const newProject = data as Project;

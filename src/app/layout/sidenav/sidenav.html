@@ -29,21 +29,51 @@
       </svg>
       Settings
     </a>
+
+    <!-- Collapsible Projects Section -->
+    <div class="pt-4 mt-4 border-t border-gray-100 dark:border-gray-800">
+      <button 
+        (click)="toggleProjects()"
+        class="w-full flex items-center justify-between px-4 py-2 text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+      >
+        <span class="flex items-center">
+          <mat-icon class="mr-2 text-sm h-4 w-4">folder_open</mat-icon>
+          Projects
+        </span>
+        <mat-icon class="text-sm h-4 w-4 transition-transform" [class.rotate-180]="projectsCollapsed()">expand_more</mat-icon>
+      </button>
+
+      <div [class.hidden]="projectsCollapsed()" class="mt-2">
+        <div class="px-4 mb-2">
+          <mat-form-field appearance="outline" class="w-full dense-form-field">
+            <mat-icon matPrefix class="text-gray-400">search</mat-icon>
+            <input 
+              matInput
+              [(ngModel)]="searchQuery" 
+              placeholder="Filter projects..." 
+              autocomplete="off"
+            >
+          </mat-form-field>
+        </div>
+
+        <mat-nav-list class="project-list">
+          @for (project of filteredProjects(); track project.id) {
+            <a 
+              mat-list-item
+              [routerLink]="['/projects', project.id]" 
+              routerLinkActive="active-link"
+              class="project-item"
+            >
+              <mat-icon matListItemIcon class="project-icon">folder</mat-icon>
+              <span matListItemTitle class="truncate text-sm">{{ project.name }}</span>
+            </a>
+          } @empty {
+            <div mat-list-item class="text-xs text-gray-400 italic px-4 py-2">No projects found</div>
+          }
+        </mat-nav-list>
+      </div>
+    </div>
   </nav>
 
   <div class="mt-auto pt-6 border-t border-gray-100 dark:border-gray-800">
-    <div class="px-4 mb-4">
-      <h4 class="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-4">Recent Projects</h4>
-      <div class="space-y-3">
-        <div class="flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer transition-colors">
-          <div class="h-2 w-2 rounded-full bg-blue-500 mr-3"></div>
-          Nova Board Rebuild
-        </div>
-        <div class="flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer transition-colors">
-          <div class="h-2 w-2 rounded-full bg-green-500 mr-3"></div>
-          Supabase Integration
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
